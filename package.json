@@ -1,0 +1,31 @@
+{
+  "name": "@madakaheri/microservice-framework",
+  "version": "0.0.0",
+  "description": "Building AWS Lambda Service and SDK Package Framework",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madakaheri/microservice-framework.git"
+  },
+  "author": "TRUSQUETTA INC.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madakaheri/microservice-framework/issues"
+  },
+  "homepage": "https://github.com/madakaheri/microservice-framework#readme",
+  "devDependencies": {
+    "ava": "^6.4.1",
+    "esprima": "^4.0.1",
+    "xo": "^1.2.2"
+  },
+  "xo": {
+    "rules": {
+      "capitalized-comments": "off"
+    }
+  }
+}

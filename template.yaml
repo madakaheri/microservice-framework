@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Microservice Framework
+
+Parameters:
+  Env:
+    Type: String
+    Default: dev
+
+Globals:
+  Function:
+    Timeout: 900
+
+Resources:
+  # Gateway Function
+
+  GatewayFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}"
+      Description: Puppeteer Service Gateway
+      Architectures:
+        - x86_64
+      CodeUri: functions/tq-service-puppeteer/
+      Handler: src/index.handler
+      Runtime: nodejs22.x
+      Environment:
+        Variables:
+          ENV: !Ref Env
+      Policies:
+        - S3CrudPolicy:
+            BucketName: "*"
+        - LambdaInvokePolicy:
+            FunctionName: !Ref TqadPreviewAndPrintPdfFunction
+
+  # Feature Functions
+
+  TqadPreviewAndPrintPdfFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-tqad-preview-and-print-pdf"
+      Description: TruSquetta Ad Previewの広告プレビューをPDF化する
+      Architectures:
+        - x86_64
+      Runtime: nodejs22.x
+      CodeUri: functions/tqad-preview-and-print-pdf/
+      Handler: src/index.handler
+      MemorySize: 5120
+      Environment:
+        Variables:
+          ENV: !Ref Env
+      Layers:
+        - !Ref PuppeteerLayer
+      Policies:
+        - S3CrudPolicy:
+            BucketName: "*"
