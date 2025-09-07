@@ -13,6 +13,13 @@ Globals:
     Timeout: 900
 
 Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-bucket"
+  
+  # Service Gateway Function
+
   ServiceFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -21,6 +28,27 @@ Resources:
       Architectures:
         - arm64
       CodeUri: service/
+      Handler: src/index.handler
+      Runtime: nodejs22.x
+      Environment:
+        Variables:
+          ENV: !Ref Env
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref S3Bucket
+        - LambdaInvokePolicy:
+            FunctionName: !Ref SpecialFunction
+  
+  # Special Functions
+
+  SpecialFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-special-function"
+      Description: Special Function
+      Architectures:
+        - arm64
+      CodeUri: functions/special-function/
       Handler: src/index.handler
       Runtime: nodejs22.x
       Environment:
