@@ -32,8 +32,11 @@ class SDK {
 		});
 	}
 
-	/** OVERRIDE_ACTIONS */
+	/** OVERRIDE_ACTIONS_START */
+	fuga = action.fuga;
+	hoge = action.hoge;
 	ping = action.ping;
+	/** OVERRIDE_ACTIONS_END */
 }
 
 export const serviceSDK = new SDK();

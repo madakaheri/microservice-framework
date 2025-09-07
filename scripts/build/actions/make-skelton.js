@@ -1,14 +1,5 @@
-/**
- * AST（コードの木構造）解析ツール esprima を使って
- * service/src/actions 以下の各アクションのコードから
- * service-client/src/actions 以下に SDK 用のコードを自動生成するスクリプト
- */
-
-import fs from 'node:fs/promises';
 import {parseModule} from 'esprima';
 
-const serviceActionPath = new URL('../service/src/actions', import.meta.url).pathname;
-const serviceClientActionPath = new URL('../service-client/src/actions', import.meta.url).pathname;
 const OverrideMarker = '@OVERRIDE_ME@';
 
 /**
@@ -17,7 +8,7 @@ const OverrideMarker = '@OVERRIDE_ME@';
  * @param {string} code - 元コード
  * @returns {{functionName: string, paramName: string, code: string}} スケルトンコード
  */
-function makeSkelton(code) {
+export function makeSkelton(code) {
 	const ast = parseModule(code, {range: true, comment: true, attachComment: true});
 	let functionName = '';
 	let parameterName = '';
@@ -54,25 +45,4 @@ function makeSkelton(code) {
 		paramName: parameterName,
 		code: skeltonCode.trim(),
 	};
-}
-
-const actionDirents = await fs.readdir(serviceActionPath, {withFileTypes: true});
-const actionDirectories = actionDirents
-	.filter(dirent => dirent.isDirectory())
-	.map(dirent => `${serviceActionPath}/${dirent.name}`);
-
-await fs.mkdir(serviceClientActionPath, {recursive: true});
-
-for (const actionDirectory of actionDirectories) {
-	const actionDirectoryName = actionDirectory.split('/').pop();
-	// eslint-disable-next-line no-await-in-loop
-	const code = await fs.readFile(`${actionDirectory}/index.js`, 'utf8');
-	const {functionName, paramName, code: skeltonCode} = makeSkelton(code);
-	const sdkImplementation = `return serviceFunction.post({
-		action: '${functionName}',
-		payload: ${paramName},
-	});`;
-	const sdkCode = 'import {serviceFunction} from \'../utils/service-function.js\';\n\n' + skeltonCode.replace(OverrideMarker, sdkImplementation);
-	// eslint-disable-next-line no-await-in-loop
-	await fs.writeFile(`${serviceClientActionPath}/${actionDirectoryName}.js`, sdkCode);
 }
