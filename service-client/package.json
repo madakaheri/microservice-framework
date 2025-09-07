@@ -2,8 +2,10 @@
   "name": "@madakaheri/service-client",
   "version": "1.0.0",
   "type": "module",
+  "types": "@types/index.d.ts",
   "main": "src/index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,5 +14,11 @@
   "description": "",
   "dependencies": {
     "@dependahub/aws-lambda": "^0.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "ava": "^6.4.1",
+    "typescript": "^5.9.2",
+    "xo": "^1.2.2"
   }
 }
