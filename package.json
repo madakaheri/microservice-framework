@@ -8,7 +8,7 @@
     "service-client"
   ],
   "scripts": {
-    "build": "node ./scripts/build/index.js",
+    "build:sdk": "node ./scripts/build-sdk/index.js",
     "test": "xo && ava"
   },
   "repository": {

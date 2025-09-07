@@ -32,7 +32,7 @@
 Service に実装した各種アクションからClient SDK を自動生成します。
 
 ```bash
-npm run build
+npm run build:sdk
 ```
 
 
