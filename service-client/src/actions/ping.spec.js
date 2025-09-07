@@ -1,13 +1,13 @@
 import test from 'ava';
-import {serviceSDK} from '@madakaheri/service-client';
+import {sdk} from '../index.js';
 
-serviceSDK.configure({
+sdk.configure({
 	// profile: 'default',
 	functionName: 'my-service',
 });
 
 test('ping action', async t => {
-	const response = await serviceSDK.ping({
+	const response = await sdk.ping({
 		person: 'Alice',
 		text: 'Hello, World!',
 	});

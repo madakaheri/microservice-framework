@@ -28,9 +28,7 @@
   },
   "xo": {
     "ignores": [
-      ".aws-sam/**",
-      ".vscode/**",
-      "**/dist/**",
+      "**/.aws-sam/**",
       "**/@types/**"
     ],
     "rules": {

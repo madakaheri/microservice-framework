@@ -3,7 +3,8 @@ import {makeSkelton} from './make-skelton.js';
 
 const serviceActionPath = new URL('../../../service/src/actions', import.meta.url).pathname;
 const serviceClientActionPath = new URL('../../../service-client/src/actions', import.meta.url).pathname;
-const OverrideMarker = '@OVERRIDE_ME@';
+const imports = 'import {serviceFunction} from \'../../../utils/service-function.js\';\n\n';
+const overrideMarker = '@OVERRIDE_ME@';
 
 /**
  * serviceClientActionPath 以下に serviceActionPath から各アクションを生成します
@@ -26,7 +27,7 @@ export async function makeSdkActions() {
 		action: '${functionName}',
 		payload: ${paramName},
 	});`;
-		const sdkCode = 'import {serviceFunction} from \'../../../utils/service-function.js\';\n\n' + skeltonCode.replace(OverrideMarker, sdkImplementation);
+		const sdkCode = imports + skeltonCode.replace(overrideMarker, sdkImplementation);
 		// eslint-disable-next-line no-await-in-loop
 		await fs.writeFile(`${serviceClientActionPath}/${actionDirectoryName}.js`, sdkCode);
 	}

@@ -1,13 +1,13 @@
 import test from 'ava';
-import {serviceSDK} from '@madakaheri/service-client';
+import {sdk} from '../index.js';
 
-serviceSDK.configure({
+sdk.configure({
 	// profile: 'default',
 	functionName: 'my-service',
 });
 
 test('hoge', async t => {
-	const response = await serviceSDK.hoge('MadakaHeri');
+	const response = await sdk.hoge('MadakaHeri');
 	console.log(response);
 	t.pass();
 });

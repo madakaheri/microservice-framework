@@ -39,5 +39,22 @@ class SDK {
 	/** OVERRIDE_ACTIONS_END */
 }
 
-export const serviceSDK = new SDK();
-export default serviceSDK;
+/**
+ * SDKのインスタンス
+ * @type {SDK}
+ * @example
+ * import {sdk} from '@madakaheri/service-client';
+ *
+ * sdk.configure({
+ *  profile: 'default',
+ *  functionName: 'my-service',
+ * });
+ *
+ * const response = await sdk.ping({
+ *  person: 'Alice',
+ *  text: 'Hello, World!',
+ * });
+ * console.log(response);
+ */
+export const sdk = new SDK(); // <-- [OVERRIDE] export名はサービスに合わせて変更してください（例: mysdk）
+export default sdk;

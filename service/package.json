@@ -4,10 +4,10 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "test": "ava"
+    "test": "xo && ava"
   },
   "keywords": [],
-  "author": "@madakaheri",
+  "author": "MadakaHeri",
   "license": "ISC",
   "description": "",
   "devDependencies": {

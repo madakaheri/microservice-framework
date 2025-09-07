@@ -43,6 +43,6 @@ export function makeSkelton(code) {
 	return {
 		functionName,
 		paramName: parameterName,
-		code: skeltonCode.trim(),
+		code: skeltonCode,
 	};
 }
