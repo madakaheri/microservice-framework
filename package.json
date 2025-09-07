@@ -27,6 +27,12 @@
     "xo": "^1.2.2"
   },
   "xo": {
+    "ignores": [
+      ".aws-sam/**",
+      ".vscode/**",
+      "**/dist/**",
+      "**/@types/**"
+    ],
     "rules": {
       "capitalized-comments": "off"
     }
