@@ -17,6 +17,10 @@
 - **Client SDK** はローカルからのオペレーションやアプリケーション側のAPI内にインストールして使用します。
 
 
+## アクション仕様
+
+- [アクション仕様はこちら](./docs/actions.md)
+
 ## 実装方法
 
 1. [./service/src/actions/{アクション名}/index.js](./service/src/actions) に実装します。

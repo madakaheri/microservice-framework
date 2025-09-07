@@ -25,6 +25,7 @@
   "devDependencies": {
     "ava": "^6.4.1",
     "esprima": "^4.0.1",
+    "jsdoc-to-markdown": "^9.1.2",
     "xo": "^1.2.2"
   },
   "xo": {
