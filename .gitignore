@@ -1,6 +1,6 @@
 # Custom
 .aws-sam
-**/@types
+**/@types/**
 
 # Logs
 logs

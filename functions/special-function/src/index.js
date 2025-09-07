@@ -1,4 +1,5 @@
 
+// eslint-disable-next-line no-unused-vars
 export async function handler(event) {
 	return {
 		statusCode: 200,

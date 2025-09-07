@@ -3,7 +3,7 @@ import {makeSkelton} from './make-skelton.js';
 
 const serviceActionPath = new URL('../../../service/src/actions', import.meta.url).pathname;
 const serviceClientActionPath = new URL('../../../service-client/src/actions', import.meta.url).pathname;
-const imports = 'import {serviceFunction} from \'../../../utils/service-function.js\';\n\n';
+const imports = 'import {serviceFunction} from \'../utils/service-function.js\';\n\n';
 const overrideMarker = '@OVERRIDE_ME@';
 
 /**

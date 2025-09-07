@@ -1,4 +1,4 @@
-import {serviceFunction} from '../../../utils/service-function.js';
+import {serviceFunction} from '../utils/service-function.js';
 
 /**
  * A simple ping action that responds with a pong message.
