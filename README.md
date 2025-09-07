@@ -32,6 +32,12 @@
 Service に実装した各種アクションからClient SDK を自動生成します。
 
 ```bash
+make sdk
+```
+
+または
+
+```bash
 npm run build:sdk
 ```
 

@@ -1,3 +1,7 @@
+sdk:
+	node ./scripts/build-sdk/index.js
+	cd service-client && npm run build
+
 deploy:
 	sam build
 	sam deploy
