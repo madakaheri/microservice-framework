@@ -4,9 +4,12 @@
   "description": "Building AWS Lambda Service and SDK Package Framework",
   "type": "module",
   "main": "src/index.js",
+  "workspaces": [
+    "service-client"
+  ],
   "scripts": {
-    "build": "node ./scripts/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node ./scripts/service-to-client.js",
+    "test": "xo && ava"
   },
   "repository": {
     "type": "git",

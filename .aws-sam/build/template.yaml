@@ -1,31 +1,30 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  Microservice Framework
+Description: 'Microservice Framework
 
+  '
 Parameters:
   Env:
     Type: String
     Default: dev
-
 Globals:
   Function:
     Timeout: 900
-
 Resources:
   ServiceFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub "${AWS::StackName}"
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}
       Description: Service Gateway Function
       Architectures:
-        - arm64
-      CodeUri: service/
+      - arm64
+      CodeUri: ServiceFunction
       Handler: src/index.handler
       Runtime: nodejs22.x
       Environment:
         Variables:
-          ENV: !Ref Env
-      # Policies:
-      #   - S3CrudPolicy:
-      #       BucketName: "*"
+          ENV:
+            Ref: Env
+    Metadata:
+      SamResourceId: ServiceFunction

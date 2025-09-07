@@ -1,3 +1,9 @@
+/**
+ * AST（コードの木構造）解析ツール esprima を使って
+ * service/src/actions 以下の各アクションのコードから
+ * service-client/src/actions 以下に SDK 用のコードを自動生成するスクリプト
+ */
+
 import fs from 'node:fs/promises';
 import {parseModule} from 'esprima';
 

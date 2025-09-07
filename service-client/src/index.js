@@ -33,6 +33,7 @@ class SDK {
 	}
 
 	/** OVERRIDE_ACTIONS */
+	ping = action.ping;
 }
 
 export const serviceSDK = new SDK();

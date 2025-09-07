@@ -1,2 +1,10 @@
-# microservice-framework
-Building AWS Lambda Service and SDK Package Framework
+# AWS Microservice Framework（仮）
+
+```mermaid
+---
+title: 全体図
+---
+flowchart LR
+    Service --> Build((Build))
+		Build --> ClientSDK
+```

@@ -1,4 +1,4 @@
-import {lambda} from '@trusquetta/aws-lambda';
+import {lambda} from '@dependahub/aws-lambda';
 
 class ServiceFunction {
 	config = {
