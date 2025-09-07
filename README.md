@@ -41,6 +41,20 @@ make sdk
 npm run build:sdk
 ```
 
+### Docs
+
+Service に実装した各種アクションのドキュメントファイルを生成します。
+
+```bash
+make doc
+```
+
+または
+
+```bash
+npm run build:docs
+```
+
 
 ## XOコーディングスタイル制限
 

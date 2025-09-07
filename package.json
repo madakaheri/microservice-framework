@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build:sdk": "make sdk",
+    "build:docs": "make doc",
     "test": "xo && ava"
   },
   "repository": {
