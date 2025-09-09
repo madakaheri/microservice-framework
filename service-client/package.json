@@ -5,7 +5,7 @@
   "types": "@types/index.d.ts",
   "main": "src/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf @types && tsc",
     "test": "xo && ava"
   },
   "keywords": [],
