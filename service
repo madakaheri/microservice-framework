@@ -29,6 +29,7 @@ AWS Microservice Framework
 
 Usage:
 	node service make action {actionName}	Create a new action
+	node service make env			Create SAM build environment file
 	node service build sdk			Build the SDK
 	node service build docs			Build the docs
 `);

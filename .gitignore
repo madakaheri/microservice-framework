@@ -1,6 +1,7 @@
 # Custom
 .aws-sam
 **/@types/**
+env.json
 
 # Logs
 logs
