@@ -16,7 +16,24 @@ export async function main() {
 	await makeSdkActionsIndex();
 	await makeSdkActionMethods();
 	await copyTypes();
-	exec(`cd ${sdkPath} && npm run build`);
+	await new Promise(resolve => {
+		exec(`cd ${sdkPath} && npm run build`, (error, stdout, stderr) => {
+			if (error) {
+				console.error(`exec error: ${error}`);
+				return;
+			}
+
+			if (stdout) {
+				console.log(`stdout: ${stdout}`);
+			}
+
+			if (stderr) {
+				console.error(`stderr: ${stderr}`);
+			}
+
+			resolve();
+		});
+	});
 	console.info(`
 	✅ SDK actions generated.
 `);
