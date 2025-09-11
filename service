@@ -1,32 +1,22 @@
 #!/usr/bin/env node
 
 import process from 'node:process';
+import fs from 'node:fs/promises';
+
+const scriptsPath = new URL('./scripts', import.meta.url).pathname;
 
 const [,, command, actionName, ...args_] = process.argv;
 
-if (new Set([command, actionName]).isSubsetOf(new Set(['make', 'action']))) {
-	const {makeAction} = await import('./scripts/make-action/index.js');
-	await makeAction(args_[0]);
-	console.info(`
-	✅ Action ${args_[0]} created.
-	👉 You can now implement the action in service/src/actions/${args_[0]}/index.js
-`);
-}
+const dirrents = await fs.readdir(scriptsPath, {withFileTypes: true});
+const actionPathes = dirrents.filter(dirent => dirent.isDirectory()).map(dirent => dirent.name);
+const commadAndActionNames = actionPathes.map(actionPath => actionPath.split('-'));
 
-if (new Set([command, actionName]).isSubsetOf(new Set(['build', 'docs']))) {
-	const {buildDocs} = await import('./scripts/build-docs/index.js');
-	await buildDocs();
-	console.info(`
-	✅ docs generated.
-`);
-}
-
-if (new Set([command, actionName]).isSubsetOf(new Set(['build', 'sdk']))) {
-	const {buildSdk} = await import('./scripts/build-sdk/index.js');
-	await buildSdk();
-	console.info(`
-	✅ SDK actions generated.
-`);
+for (const [cmd, act] of commadAndActionNames) {
+	if (cmd === command && act === actionName) {
+		const module = await import(`./scripts/${cmd}-${act}/index.js`);
+		await module[`${cmd}${act.charAt(0).toUpperCase() + act.slice(1)}`](...args_);
+		process.exit(0);
+	}
 }
 
 if (!command || !actionName) {
@@ -34,8 +24,8 @@ if (!command || !actionName) {
 Microservice Framework
 
 Usage:
-	node service make action {actionName}  # Create a new action (Only camelCase is supported)
-	node service build sdk                  # Build the SDK
-	node service build docs                 # Build the docs
+	node service make action {actionName}	Create a new action
+	node service build sdk			Build the SDK
+	node service build docs			Build the docs
 `);
 }

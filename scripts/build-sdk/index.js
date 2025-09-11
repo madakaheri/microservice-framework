@@ -11,4 +11,7 @@ export async function buildSdk() {
 	await makeSdkActions();
 	await makeSdkActionsIndex();
 	await makeSdkActionMethods();
+	console.info(`
+	✅ SDK actions generated.
+`);
 }

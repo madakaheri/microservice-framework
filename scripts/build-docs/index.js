@@ -31,4 +31,8 @@ export async function buildDocs() {
 	docs.unshift(header);
 
 	await fs.writeFile(`${docsPath}/actions.md`, docs.join('\n---\n') + '\n');
+
+	console.info(`
+	✅ docs generated.
+`);
 }

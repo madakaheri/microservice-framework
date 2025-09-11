@@ -27,4 +27,9 @@ export async function ${actionName}(input) {
 `;
 	await fs.mkdir(actionPath, {recursive: true});
 	await fs.writeFile(indexJsPath, content.trimStart());
+
+	console.info(`
+	✅ Action ${actionName} created.
+	👉 You can now implement the action in ${serviceActionsPath}/${actionName}/index.js
+`);
 }
