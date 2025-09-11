@@ -40,6 +40,14 @@ Service に新しいアクションを追加します。
 node service make action
 ```
 
+### Make ENV
+
+sam build -u を行う際に必要な 環境変ファイル ```env.json``` を生成します。
+
+```bash
+node service make env
+```
+
 ### Build SDK
 
 Service に実装した各種アクションからClient SDK を自動生成します。

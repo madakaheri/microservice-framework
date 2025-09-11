@@ -2,6 +2,7 @@ import {exec} from 'node:child_process';
 import {makeSdkActions} from './actions/make-sdk-actions.js';
 import {makeSdkActionsIndex} from './actions/make-sdk-actions-index.js';
 import {makeSdkActionMethods} from './actions/make-sdk-action-methods.js';
+import {copyTypes} from './actions/copy-types.js';
 
 const sdkPath = new URL('../../service-client', import.meta.url).pathname;
 
@@ -14,6 +15,7 @@ export async function main() {
 	await makeSdkActions();
 	await makeSdkActionsIndex();
 	await makeSdkActionMethods();
+	await copyTypes();
 	exec(`cd ${sdkPath} && npm run build`);
 	console.info(`
 	✅ SDK actions generated.
