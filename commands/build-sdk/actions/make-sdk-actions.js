@@ -27,7 +27,8 @@ export async function makeSdkActions() {
 		action: '${functionName}',
 		payload: ${paramName},
 	});`;
-		const sdkCode = imports + skeltonCode.replace(overrideMarker, sdkImplementation);
+		let sdkCode = imports + skeltonCode.replace(overrideMarker, sdkImplementation);
+		sdkCode = sdkCode.replaceAll('../../types', '../types');
 		// eslint-disable-next-line no-await-in-loop
 		await fs.writeFile(`${serviceClientActionPath}/${actionDirectoryName}.js`, sdkCode);
 	}
