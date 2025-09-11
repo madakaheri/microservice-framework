@@ -8,7 +8,7 @@ const docsPath = new URL('../../docs', import.meta.url).pathname;
 /**
  * ./docs にアクション別にREADMEを生成
  */
-export async function buildDocs() {
+export async function main() {
 	const dirents = await fs.readdir(serviceActionPath, {withFileTypes: true});
 	const actions = dirents
 		.filter(dirent => dirent.isDirectory())

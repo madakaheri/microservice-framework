@@ -3,29 +3,33 @@
 import process from 'node:process';
 import fs from 'node:fs/promises';
 
-const scriptsPath = new URL('./scripts', import.meta.url).pathname;
+const commandsPath = new URL('./commands', import.meta.url).pathname;
 
 const [,, command, actionName, ...args_] = process.argv;
 
-const dirrents = await fs.readdir(scriptsPath, {withFileTypes: true});
+/**
+ * Auto connect command and actionName to the script
+ */
+const dirrents = await fs.readdir(commandsPath, {withFileTypes: true});
 const actionPathes = dirrents.filter(dirent => dirent.isDirectory()).map(dirent => dirent.name);
 const commadAndActionNames = actionPathes.map(actionPath => actionPath.split('-'));
-
 for (const [cmd, act] of commadAndActionNames) {
 	if (cmd === command && act === actionName) {
-		const module = await import(`./scripts/${cmd}-${act}/index.js`);
-		await module[`${cmd}${act.charAt(0).toUpperCase() + act.slice(1)}`](...args_);
+		const {main} = await import(`${commandsPath}/${cmd}-${act}/index.js`);
+		await main(...args_);
 		process.exit(0);
 	}
 }
 
-if (!command || !actionName) {
-	console.info(`
-Microservice Framework
+/**
+ * CLI Information
+ */
+console.info(`
+AWS Microservice Framework
 
 Usage:
 	node service make action {actionName}	Create a new action
 	node service build sdk			Build the SDK
 	node service build docs			Build the docs
 `);
-}
+process.exit(0);

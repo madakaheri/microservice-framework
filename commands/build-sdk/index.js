@@ -7,7 +7,7 @@ import {makeSdkActionMethods} from './actions/make-sdk-action-methods.js';
  * service-gateway/src/actions 以下の各アクションのコードから
  * service-client/src/actions 以下に SDK 用のコードを自動生成するスクリプト
  */
-export async function buildSdk() {
+export async function main() {
 	await makeSdkActions();
 	await makeSdkActionsIndex();
 	await makeSdkActionMethods();

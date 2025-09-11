@@ -4,7 +4,7 @@ import {camelToKebab} from './utils/text-transform.js';
 const rootPath = new URL('../..', import.meta.url).pathname;
 const serviceActionsPath = new URL(`${rootPath}/service-gateway/src/actions`, import.meta.url).pathname;
 
-export async function makeAction(actionName) {
+export async function main(actionName) {
 	if (!actionName) {
 		throw new Error('Action name is required!\nUsage: npm run make action <ActionName>');
 	}
