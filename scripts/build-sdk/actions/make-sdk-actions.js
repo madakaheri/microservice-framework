@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import {makeSkelton} from './make-skelton.js';
 
-const serviceActionPath = new URL('../../../service/src/actions', import.meta.url).pathname;
+const serviceActionPath = new URL('../../../service-gateway/src/actions', import.meta.url).pathname;
 const serviceClientActionPath = new URL('../../../service-client/src/actions', import.meta.url).pathname;
 const imports = 'import {serviceFunction} from \'../utils/service-function.js\';\n\n';
 const overrideMarker = '@OVERRIDE_ME@';

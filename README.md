@@ -5,7 +5,7 @@
 
 > [📡 Twitchライブ（期間限定)](https://www.twitch.tv/videos/2560384073)
 
-[Service](./service/src/actions) の実装から [Client SDK](./service-client/src/actions) の実装を自動生成してAWSでのマイクロサービス制作を簡単にするツールです。
+[Service](./service-gateway/src/actions) の実装から [Client SDK](./service-client/src/actions) の実装を自動生成してAWSでのマイクロサービス制作を簡単にするツールです。
 
 **全体図**
 ![全体図](./docs/images/全体図.jpeg)
@@ -23,40 +23,37 @@
 
 ## 実装方法
 
-1. [./service/src/actions/{アクション名}/index.js](./service/src/actions) に実装します。
-2. ```sam build && sam deploy``` でAWSにデプロイします。
-3. ```npm run build``` で [ServiceClient](./service-client) ビルドします。
-4. [ServiceClient](./service-client) を GitHub Packages などにパブリッシュしてシェアして下さい。
+1. ```node service make action {アクション名}``` でアクションを生成します。
+2. ①で生成したアクション [./service-gateway/src/actions/{アクション名}/index.js](./service-gateway/src/actions) を実装します。
+3. ```sam build && sam deploy``` でAWSにデプロイします。
+4. ```node service build sdk``` で [ServiceClient](./service-client) ビルドします。
+5. [ServiceClient](./service-client) を GitHub Packages などにパブリッシュしてシェアして下さい。
 
 
 ## コマンド
 
-### Build
+### Make Action
+
+Service に新しいアクションを追加します。
+
+```bash
+node service make action
+```
+
+### Build SDK
 
 Service に実装した各種アクションからClient SDK を自動生成します。
 
 ```bash
-make sdk
+node service build sdk
 ```
 
-または
-
-```bash
-npm run build:sdk
-```
-
-### Docs
+### Build Docs
 
 Service に実装した各種アクションのドキュメントファイルを生成します。
 
 ```bash
-make doc
-```
-
-または
-
-```bash
-npm run build:docs
+node service build docs
 ```
 
 

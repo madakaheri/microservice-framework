@@ -33,6 +33,7 @@ class SDK {
 	}
 
 	/** OVERRIDE_ACTIONS_START */
+	aaa = action.aaa;
 	fuga = action.fuga;
 	hoge = action.hoge;
 	ping = action.ping;

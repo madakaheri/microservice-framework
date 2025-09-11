@@ -11,6 +11,7 @@ Parameters:
 Globals:
   Function:
     Timeout: 900
+    MemorySize: 256
 
 Resources:
   S3Bucket:
@@ -20,14 +21,14 @@ Resources:
   
   # Service Gateway Function
 
-  ServiceFunction:
+  ServiceGatewayFunction:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub "${AWS::StackName}"
       Description: Service Gateway Function
       Architectures:
         - arm64
-      CodeUri: service/
+      CodeUri: service-gateway/
       Handler: src/index.handler
       Runtime: nodejs22.x
       Environment:
