@@ -27,7 +27,7 @@ export async function makeSdkActionMethods() {
 
 	const sdkCode = await fs.readFile(sdkPath, 'utf8');
 	const updatedSdkCode = sdkCode.replace(
-		/\/\*\* OVERRIDE_ACTIONS_START \*\/[\s\S]*?\/\*\* OVERRIDE_ACTIONS_END \*\//,
+		/\/\/ OVERRIDE_ACTIONS_START[\s\S]*?\/\/ OVERRIDE_ACTIONS_END/,
 		`// OVERRIDE_ACTIONS_START\n${content}\n\t// OVERRIDE_ACTIONS_END`,
 	);
 
